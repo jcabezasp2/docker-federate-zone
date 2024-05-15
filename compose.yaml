@@ -11,8 +11,6 @@ services:
 
   wordpress:
     image: wordpress:latest
-    # ports:
-      # - "8080:80"
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: ${MYSQL_USER}
@@ -36,27 +34,30 @@ services:
     networks:
       - sede3
 
-  openvpn-as:
-    image: openvpn/openvpn-as
-    cap_add:
-      - NET_ADMIN
-    ports:
-      - "943:943"
-      - "443:443"
-      - "1194:1194/udp"
-    volumes:
-      - ./vpn:/openvpn
-    restart: always
+  # openvpn-as:
+  #   image: openvpn/openvpn-as
+  #   cap_add:
+  #     - NET_ADMIN
+  #   ports:
+  #     - "943:943"
+  #     - "443:443"
+  #     - "1194:1194/udp"
+  #   volumes:
+  #     - ./vpn:/openvpn
+  #   restart: always
+  #   networks:
+  #     - sede3
+
+  samba:
+    build:
+      context: ./samba
+      dockerfile: Dockerfile
+    environment:
+      REALM: ${REALM}
+    # ports:
+    # restart: always
     networks:
       - sede3
-
-  # samba:
-  #   build:
-  #     context: ./samba
-  #     dockerfile: Dockerfile
-  #     environment:
-  #   ports:
-  #   restart: always
 
 networks:
     sede3:
