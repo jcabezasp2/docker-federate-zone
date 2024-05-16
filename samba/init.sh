@@ -16,6 +16,7 @@ echo $separator
 echo "Installing packages."
 echo "step 1 / 4"
 echo $separator
+
 apt update
 apt install -y \
         pkg-config \
@@ -38,6 +39,7 @@ echo $separator
 echo "Configuring Kerberos."
 echo "step 3 / 4"
 echo $separator
+
 source /custom/scripts/krb5.sh
 
 # Configure Samba
@@ -46,3 +48,5 @@ echo "Configuring Samba."
 echo "step 4 / 4"
 echo $separator
 # TODO: Add Samba configuration
+
+source /custom/scripts/samba.sh
