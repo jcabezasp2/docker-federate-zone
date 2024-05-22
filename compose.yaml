@@ -57,8 +57,8 @@ services:
       ADMIN_USER: ${ADMIN_USER}
       ADMIN_PASS: ${ADMIN_PASS}
     ports:
-      - "53:53/tcp" # DNS
-      - "53:53/udp" # DNS
+      - "5353:53/tcp" # DNS
+      - "5353:53/udp" # DNS
       - "88:88/tcp" # Kerberos
       - "88:88/udp" # Kerberos
       - "135:135/tcp" # RPC
