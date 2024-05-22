@@ -1,4 +1,17 @@
 services:
+  dnsmasq:
+    image: andyshinn/dnsmasq:2.78
+    volumes:
+      - ./dns/dnsmasq.conf:/etc/dnsmasq.conf
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+    cap_add:
+      - NET_ADMIN
+    restart: always
+    networks:
+      - sede3
+
   nginx:
     image: nginx:latest
     ports:
@@ -57,8 +70,8 @@ services:
       ADMIN_USER: ${ADMIN_USER}
       ADMIN_PASS: ${ADMIN_PASS}
     ports:
-      - "53:53/tcp" # DNS
-      - "53:53/udp" # DNS
+      # - "53:53/tcp" # DNS
+      # - "53:53/udp" # DNS
       - "88:88/tcp" # Kerberos
       - "88:88/udp" # Kerberos
       - "135:135/tcp" # RPC
