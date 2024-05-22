@@ -1,2 +1,2 @@
 #!/bin/bash
-docker-compose up -d && docker-compose logs -f samba
+docker compose up -d && docker compose logs -f samba
