@@ -5,6 +5,4 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-systemctl start systemd-resolved
-
 docker compose down

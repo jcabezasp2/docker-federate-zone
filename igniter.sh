@@ -5,6 +5,4 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-systemctl stop systemd-resolved
-
-docker compose up -d > logs.txt
+docker compose up > logs.txt
