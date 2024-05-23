@@ -24,6 +24,7 @@ services:
 
   db:
     image: mysql:latest
+    mem_limit: 512m
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}

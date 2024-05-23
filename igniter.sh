@@ -5,4 +5,6 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
+git pull
+
 docker compose up > logs.txt
