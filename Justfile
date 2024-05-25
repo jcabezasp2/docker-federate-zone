@@ -1,4 +1,8 @@
 
+# To run the project is necessary to have just installed
+# the command to install is:
+# sudo snap install just --edge --classic
+
 start:
     ./igniter.sh
 

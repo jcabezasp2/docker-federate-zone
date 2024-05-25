@@ -1,53 +1,4 @@
 services:
-  nginx:
-    image: nginx:latest
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-    restart: always
-    networks:
-      - sede3
-
-  wordpress:
-    image: wordpress:latest
-    environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: ${MYSQL_USER}
-      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
-      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
-    depends_on:
-      - db
-    restart: always
-    networks:
-      - sede3
-
-  db:
-    image: mysql:5
-    mem_limit: 2g
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'no'
-    restart: always  
-    networks:
-      - sede3
-
-  # openvpn-as:
-  #   image: openvpn/openvpn-as
-  #   cap_add:
-  #     - NET_ADMIN
-  #   ports:
-  #     - "943:943"
-  #     - "443:443"
-  #     - "1194:1194/udp"
-  #   volumes:
-  #     - ./vpn:/openvpn
-  #   restart: always
-  #   networks:
-  #     - sede3
 
   samba:
     build:
@@ -78,6 +29,56 @@ services:
     # restart: always
     networks:
       - sede3
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    restart: always
+    networks:
+      - sede3
+
+  db:
+    image: mariadb:10.6.4-focal
+    mem_limit: 2g
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'no'
+    restart: always  
+    networks:
+      - sede3
+
+  wordpress:
+    image: wordpress:latest
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: ${MYSQL_USER}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+    depends_on:
+      - db
+    restart: always
+    networks:
+      - sede3
+
+  # openvpn-as:
+  #   image: openvpn/openvpn-as
+  #   cap_add:
+  #     - NET_ADMIN
+  #   ports:
+  #     - "943:943"
+  #     - "443:443"
+  #     - "1194:1194/udp"
+  #   volumes:
+  #     - ./vpn:/openvpn
+  #   restart: always
+  #   networks:
+  #     - sede3
 
 networks:
     sede3:
