@@ -40,31 +40,31 @@ services:
     networks:
       - sede3
 
-  db:
-    image: mariadb:10.6.4-focal
-    mem_limit: 2g
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'no'
-    restart: always  
-    networks:
-      - sede3
+  # db:
+  #   image: mariadb:10.6.4-focal
+  #   mem_limit: 2g
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+  #     MYSQL_DATABASE: ${MYSQL_DATABASE}
+  #     MYSQL_USER: ${MYSQL_USER}
+  #     MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  #     MYSQL_ALLOW_EMPTY_PASSWORD: 'no'
+  #   restart: always  
+  #   networks:
+  #     - sede3
 
-  wordpress:
-    image: wordpress:latest
-    environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: ${MYSQL_USER}
-      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
-      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
-    depends_on:
-      - db
-    restart: always
-    networks:
-      - sede3
+  # wordpress:
+  #   image: wordpress:latest
+  #   environment:
+  #     WORDPRESS_DB_HOST: db
+  #     WORDPRESS_DB_USER: ${MYSQL_USER}
+  #     WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+  #     WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+  #   depends_on:
+  #     - db
+  #   restart: always
+    # networks:
+    #   - sede3
 
   # openvpn-as:
   #   image: openvpn/openvpn-as
