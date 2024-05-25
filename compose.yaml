@@ -30,15 +30,15 @@ services:
     networks:
       - sede3
 
-  nginx:
-    image: nginx:latest
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-    restart: always
-    networks:
-      - sede3
+  # nginx:
+  #   image: nginx:latest
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - ./nginx:/etc/nginx/conf.d
+  #   restart: always
+  #   networks:
+  #     - sede3
 
   # db:
   #   image: mariadb:10.6.4-focal
