@@ -9,8 +9,6 @@ services:
       ADMIN_USER: ${ADMIN_USER}
       ADMIN_PASS: ${ADMIN_PASS}
     ports:
-      # - "53:53/tcp" # DNS
-      # - "53:53/udp" # DNS
       - "88:88/tcp" # Kerberos
       - "88:88/udp" # Kerberos
       - "135:135/tcp" # RPC
@@ -26,16 +24,16 @@ services:
       - "3268:3268/tcp" # LDAP Global Catalog
       - "3269:3269/tcp" # LDAP Global Catalog SSL
       # - "49152-65535:49152-65535/tcp" # RPC for services such as AD replication and SYSVOL replication
-    # restart: always
+    restart: always
     networks:
       - sede3
 
   nginx:
-    image: nginx:latest
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
     ports:
       - "80:80"
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
     restart: always
     networks:
       - sede3
@@ -65,20 +63,6 @@ services:
     restart: always
     networks:
       - sede3
-
-  # openvpn-as:
-  #   image: openvpn/openvpn-as
-  #   cap_add:
-  #     - NET_ADMIN
-  #   ports:
-  #     - "943:943"
-  #     - "443:443"
-  #     - "1194:1194/udp"
-  #   volumes:
-  #     - ./vpn:/openvpn
-  #   restart: always
-  #   networks:
-  #     - sede3
 
 networks:
     sede3:
