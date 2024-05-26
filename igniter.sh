@@ -7,4 +7,4 @@ fi
 
 git pull
 
-docker compose up > logs.txt
+docker compose up --remove-orphans

@@ -25,7 +25,9 @@ apt install -y \
         samba \
         krb5-user \
         krb5-config \
-        winbind 
+        winbind \
+        openssl \
+        bind9
 
 # Configure OpenVPN
 echo $separator
@@ -47,6 +49,5 @@ echo $separator
 echo "Configuring Samba."
 echo "step 4 / 4"
 echo $separator
-# TODO: Add Samba configuration
 
 source /custom/scripts/samba.sh
