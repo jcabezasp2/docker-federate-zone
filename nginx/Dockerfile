@@ -1,8 +1,9 @@
-FROM nginx:latest
+FROM nginx:1.22
 
 RUN apt-get update && \
     apt-get install -y \
-    libnginx-mod-http-modsecurity \
+    nginx-extras \
+    libnginx-mod-http-ndk \
     modsecurity-crs
 
 COPY ./default.conf /etc/nginx/conf.d/default.conf
